@@ -6,16 +6,16 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get("/:id", (req, res) => {
-  res.send(`Hello World ${req.params.id}`);
-});
-
+// ✅ Define /crash BEFORE /:id
 app.get("/crash", (req, res) => {
   res.send("App is crashing...");
-  process.exit(1); // Simulate a crash
+  process.exit(1); // Simulate crash
+});
+
+app.get("/:id", (req, res) => {
+  res.send(`Hello World ${req.params.id}`);
 });
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
- 
